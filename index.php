@@ -41,11 +41,10 @@ $stmt->execute();
 $num = $stmt->rowCount();
 echo $num 
   
-
 if($num>0){
   
     //start table
-    echo "<table border='1'>";
+    echo "<table border='2'>";
   
         //creating our table heading
         echo "<tr>";
