@@ -3,44 +3,60 @@
     <head>
         <title>PDO Read Records - code from codeofaninja.com</title>
   
-    </head>
+  
+  
+  </head>
 
-<script type='text/javascript'>
-function delete_user( id ){
-  
-    var answer = confirm('Are you sure?');
-    if ( answer ){
-  
-        //if user clicked ok, pass the id to delete.php and execute the delete query
-        window.location = 'delete.php?id=' + id;
-    }
-}
-</script>
+
 <body>
-<!-- just a header label -->
+
 <h1>PDO: Read Records</h1>
   
+
+
+
 <?php
-$action = isset($_GET['action']) ? $_GET['action'] : "";
-  
-// if it was redirected from delete.php
-if($action=='deleted'){
-    echo "<div>Record was deleted.</div>";
-}
 
 //include database connection
 include 'db_connect.php';
   
 //select all data
+
+$query = "SELECT matricola,cognome,nome FROM studente ;
+$result = pg_query($query);
+if (!$result) {
+    echo "Problem with query " . $query . "<br/>";
+    echo pg_last_error();
+    exit();
+}
+
+$myrow = pg_fetch_assoc($result); 
+$value == $myrow[rating];
+$value2 == $myrow[numofratings];
+
+echo "$value, $value2";
+
+
+
+
+
+
+
+
+
+/*
 $query = "SELECT matricola,nome,cognome FROM studente";
-echo "passato";
+
 $stmt = $con-> prepare( $query );
 $stmt->execute();
-  
-//this is how to get number of rows returned
+
+
 $num = $stmt->rowCount();
 
 echo "il numero della tab :".$num ;
+
+
+
 if($num>0){
   
     //start table
@@ -90,5 +106,7 @@ else{
 ?> 
 <!-- dynamic content will be here -->
  
+
+*/
 </body>
 </html>
