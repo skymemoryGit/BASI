@@ -18,16 +18,15 @@ include 'db_connect.php';
   
 //select all data
 
-$result = pg_query($db, "SELECT nome, matricola FROM studente");
-if (!$result) {
-  echo "An error occurred.\n";
-  exit;
-}
+$sql=$db->query("SELECT * FROM studente;");
+$sql->setFetchMode(PDO::FETCH_BOTH);
 
-while ($row = pg_fetch_row($result)) {
-  echo "Author: $row[0]  E-mail: $row[1]";
-  echo "<br />\n";
-}
+
+while($row=$sql->fetch()){
+	$lstStand=$row;
+	echo '<tr><td>'.$row['nome'].'</td><td>'.$row['cognome'].'</td><td>'.$row['matricola'].'</td>';
+
+			
 
 
 
