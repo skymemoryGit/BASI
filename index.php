@@ -28,12 +28,12 @@ if($action=='deleted'){
     echo "<div>Record was deleted.</div>";
 }
 
-
 //include database connection
 include 'db_connect.php';
   
 //select all data
 $query = "SELECT matricola,nome,cognome FROM studente";
+echo "passato";
 $stmt = $con-> prepare( $query );
 $stmt->execute();
   
@@ -51,7 +51,7 @@ if($num>0){
             echo "<th>matricola</th>";
             echo "<th>nome</th>";
             echo "<th>cognome</th>";
-            echo "<th>Action</th>";
+          //  echo "<th>Action</th>";
         echo "</tr>";
   
         //retrieve our table contents
