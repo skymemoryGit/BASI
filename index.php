@@ -40,7 +40,7 @@ $stmt->execute();
 //this is how to get number of rows returned
 $num = $stmt->rowCount();
 
-  
+echo "il numero della tab :".$num ;
 if($num>0){
   
     //start table
