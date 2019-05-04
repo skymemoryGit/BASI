@@ -17,20 +17,17 @@
 include 'db_connect.php';
   
 //select all data
-$query = "SELECT * FROM studente;" ;
-$result = pg_query($query);
+
+$result = pg_query($conn, "SELECT nome, matricola FROM studente");
 if (!$result) {
-    echo "Problem with query " . $query . "<br/>";
-    echo pg_last_error();
-    exit();
+  echo "An error occurred.\n";
+  exit;
 }
 
-$myrow = pg_fetch_assoc($result); 
-$value == $myrow[matricola];
-$value2 == $myrow[cognome];
-
-echo "$value, $value2";
-
+while ($row = pg_fetch_row($result)) {
+  echo "Author: $row[0]  E-mail: $row[1]";
+  echo "<br />\n";
+}
 
 
 
