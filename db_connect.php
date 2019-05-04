@@ -1,15 +1,18 @@
 <?php
-$host = "172.16.1.99";
-$db_name = "quintabi";
-$username = "quintabi";
-$password = "quintabi";
-  
-try {
-    $con = new PDO("pgsql:host={$host};dbname={$db_name}", $username, $password);
-}
-  
-// to handle connection error
-catch(PDOException $exception){
-    echo "Connection error: " . $exception->getMessage();
-}
+	//print_r(PDO::getAvailableDrivers());
+	$dbname='yejianchen';	
+	$dbusername='yejianchen';	
+	$dbpassword='Random1996!';		
+	
+	// Connessione al database
+	//Nuova istanza della classe PDO
+	try{
+		$db=new PDO("pgsql:dbname=$dbname",$dbusername,$dbpassword);
+		//Se ci sono errori li scrive
+		$db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+		//echo "Connessione col DB OK";
+	}
+	catch (PDOException $e) {
+		echo "Errore". $e->getMessage();
+	}
 ?>
