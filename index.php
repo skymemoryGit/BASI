@@ -33,12 +33,13 @@ if($action=='deleted'){
 include 'db_connect.php';
   
 //select all data
-$query = "SELECT ,matricola,nome,cognome FROM studente";
+$query = "SELECT matricola,nome,cognome FROM studente";
 $stmt = $con-> prepare( $query );
 $stmt->execute();
   
 //this is how to get number of rows returned
 $num = $stmt->rowCount();
+echo $num 
   
 //check if more than 0 record found
 if($num>0){
