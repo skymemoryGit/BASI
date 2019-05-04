@@ -18,7 +18,7 @@ include 'db_connect.php';
   
 //select all data
 
-$result = pg_query($conn, "SELECT nome, matricola FROM studente");
+$result = pg_query($db, "SELECT nome, matricola FROM studente");
 if (!$result) {
   echo "An error occurred.\n";
   exit;
