@@ -30,10 +30,10 @@ if($action=='deleted'){
 
 
 //include database connection
-include 'libs/db_connect.php';
+include 'db_connect.php';
   
 //select all data
-$query = "SELECT id, firstname, lastname, username FROM users";
+$query = "SELECT ,matricola,nome,cognome FROM studente";
 $stmt = $con-> prepare( $query );
 $stmt->execute();
   
