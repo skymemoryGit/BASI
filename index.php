@@ -48,9 +48,9 @@ if($num>0){
   
         //creating our table heading
         echo "<tr>";
-            echo "<th>Firstname</th>";
-            echo "<th>Lastname</th>";
-            echo "<th>Username</th>";
+            echo "<th>matricola</th>";
+            echo "<th>nome</th>";
+            echo "<th>cognome</th>";
             echo "<th>Action</th>";
         echo "</tr>";
   
@@ -65,9 +65,9 @@ if($num>0){
   
             //creating new table row per record
             echo "<tr>";
-                echo "<td>{$firstname}</td>";
-                echo "<td>{$lastname}</td>";
-                echo "<td>{$username}</td>";
+                echo "<td>{$matricola}</td>";
+                echo "<td>{$nome}</td>";
+                echo "<td>{$cognome}</td>";
                 echo "<td>";
                     //we will use this links on next part of this post
                     echo "<a href='edit.php?id={$id}'>Edit</a>";
