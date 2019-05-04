@@ -25,7 +25,7 @@ $sql->setFetchMode(PDO::FETCH_BOTH);
 while($row=$sql->fetch()){
 	$lstStand=$row;
 	echo '<tr><td>'.$row['nome'].'</td><td>'.$row['cognome'].'</td><td>'.$row['matricola'].'</td>';
-
+}
 			
 
 
