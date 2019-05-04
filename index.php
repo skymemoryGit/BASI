@@ -41,7 +41,7 @@ $stmt->execute();
 $num = $stmt->rowCount();
 echo $num 
   
-//check if more than 0 record found
+
 if($num>0){
   
     //start table
