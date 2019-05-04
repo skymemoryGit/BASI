@@ -39,7 +39,7 @@ $stmt->execute();
   
 //this is how to get number of rows returned
 $num = $stmt->rowCount();
-echo $num 
+
   
 if($num>0){
   
