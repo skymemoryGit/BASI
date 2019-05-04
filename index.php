@@ -17,7 +17,7 @@
 include 'db_connect.php';
   
 //select all data
-$query = "SELECT matricola,cognome,nome FROM studente ;
+$query = "SELECT matricola,cognome,nome FROM studente" ;
 $result = pg_query($query);
 if (!$result) {
     echo "Problem with query " . $query . "<br/>";
