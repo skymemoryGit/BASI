@@ -21,7 +21,7 @@
     <div class="container">
 
         <div class="page-header">
-            <h1>REGISTRAZIONE STUDENTE</h1>
+            <h1>PRENOTAZIONE AULE/RICHIEDE</h1>
         </div>
  
 <?php
@@ -30,26 +30,68 @@
     include 'libs/db_connect.php';
   
     try{
-        $matricola=$_POST['matricola'];
-        $nome=$_POST['nome'];
-        $cognome=$_POST['cognome'];
-        if($matricola!="" && $nome!="" && $cognome!=""){
+        $studente=$_POST['studente'];
+        $aula=$_POST['aula'];
+        $data=$_POST['data'];
+        $ora=$_POST['ora'];
+        $uscita=$_POST['uscita'];
 
-            //write query
-            $query = "INSERT INTO studente (matricola,nome,cognome) values (?,?,?)";
+        if($studente!="" && $aula!="" && $data!="" && $ora!="" && $uscita!=""){
+
+
+//INSERISCO PURE IN AULA PRENOTATA
+          $query = "INSERT INTO aula_prenotata (aula,data,ora,ora_uscita) values (?,?,?,?)";
       
             //prepare query for excecution
             $stmt = $db->prepare($query);
       
             //bind the parameters
             //this is the first question mark
-            $stmt->bindParam(1, $_POST['matricola']);
+            $stmt->bindParam(1, $_POST['aula']);
       
             //this is the second question mark
-            $stmt->bindParam(2, $_POST['nome']);
+            $stmt->bindParam(2, $_POST['data']);
       
             //this is the third question mark
-            $stmt->bindParam(3, $_POST['cognome']);
+            $stmt->bindParam(3, $_POST['ora']);
+            $stmt->bindParam(4, $_POST['uscita']);
+            
+          /**  if(!isset($firstname) )
+            {
+                echo "vuoto";
+            }
+            else{
+                echo "pieno";
+            }
+      **/
+           
+           
+            // Execute the query
+            if($stmt->execute()){
+                echo "Record was saved.";
+            }else{
+                die('Unable to save record.');
+        }
+
+//INSERISCO IN RICHIEDE
+
+
+            //write query
+            $query = "INSERT INTO richiede (studente,aula,data,ora) values (?,?,?,?)";
+      
+            //prepare query for excecution
+            $stmt = $db->prepare($query);
+      
+            //bind the parameters
+            //this is the first question mark
+            $stmt->bindParam(1, $_POST['studente']);
+      
+            //this is the second question mark
+            $stmt->bindParam(2, $_POST['aula']);
+      
+            //this is the third question mark
+            $stmt->bindParam(3, $_POST['data']);
+            $stmt->bindParam(4, $_POST['ora']);
             
           /**  if(!isset($firstname) )
             {
@@ -68,9 +110,12 @@
                 die('Unable to save record.');
         }
       }//end if controllo inserimento parametri
-        if($matricola=="" or $nome=="" or $cognome=""){
+        if($studente=="" or $aula=="" or $data="" or $ora=""  or $uscita=""){
             echo "non hai inserito un parametro";
         }
+
+
+
     }catch(PDOException $exception){ //to handle error
         echo "Error: " . $exception->getMessage();
     }
@@ -82,16 +127,24 @@
  <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]);?>" method="post" enctype="multipart/form-data">
             <table class='table table-hover table-responsive table-bordered'>
                 <tr>
-                    <td>matricola</td>
-                    <td><input type='text' name='matricola' class='form-control' /></td>
+                    <td>studente</td>
+                    <td><input type='text' name='studente' class='form-control' /></td>
                 </tr>
                 <tr>
-                    <td>nome</td>
-                    <td><input type='text' name='nome' class='form-control'></textarea></td>
+                    <td>aula</td>
+                    <td><input type='text' name='aula' class='form-control'></textarea></td>
                 </tr>
                 <tr>
-                    <td>cognome</td>
-                    <td><input type='text' name='cognome' class='form-control' /></td>
+                    <td>data</td>
+                    <td><input type='text' name='data' class='form-control' /></td>
+                </tr>
+                <tr>
+                    <td>ora</td>
+                    <td><input type='text' name='ora' class='form-control' /></td>
+                </tr>
+                <tr>
+                    <td>ora uscita</td>
+                    <td><input type='text' name='uscita' class='form-control' /></td>
                 </tr>
                 
                 <tr>

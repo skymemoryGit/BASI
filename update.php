@@ -27,7 +27,7 @@
 <?php
 // get passed parameter value, in this case, the record ID
 // isset() is a PHP function used to verify if a value is there or not
-$id=isset($_GET['matricola']) ? $_GET['matricola'] : die('ERROR: Record ID not found.');
+$matricola=isset($_GET['matricola']) ? $_GET['matricola'] : die('ERROR: Record ID not found.');
  
 //include database connection
 include 'libs/db_connect.php';
@@ -35,7 +35,7 @@ include 'libs/db_connect.php';
 // read current record's data
 try {
     // prepare select query
-    $query = "SELECT matricola, nome, cognome From stundete WHERE matricola = ? ";
+    $query = "SELECT matricola, nome, cognome From studente WHERE matricola = ? ";
     $stmt = $db->prepare( $query );
      
     // this is the first question mark
@@ -76,7 +76,7 @@ if($_POST){
         // in this case, it seemed like we have so many fields to pass and 
         // it is better to label them and not use question marks
         $query = "UPDATE studente 
-                    SET nome=:nome, congnome=:congnome
+                    SET nome=:nome, cognome=:cognome
                     WHERE matricola = :matricola";
  
         // prepare query for excecution
@@ -88,7 +88,7 @@ if($_POST){
         
  
         // bind the parameters
-        $stmt->bindParam(':nome', $oame);
+        $stmt->bindParam(':nome', $nome);
         $stmt->bindParam(':cognome', $cognome);
     
         $stmt->bindParam(':matricola', $matricola);
@@ -110,22 +110,22 @@ if($_POST){
 ?>
 
         <!--we have our html form here where new user information will be entered-->
-        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?id={$id}");?>" method="post">
+        <form action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"] . "?matricola={$matricola}");?>" method="post">
             <table class='table table-hover table-responsive table-bordered'>
                 <tr>
                     <td>NOME</td>
-                    <td><input type='text' name='name' value="<?php echo htmlspecialchars($name, ENT_QUOTES);  ?>" class='form-control' /></td>
+                    <td><textarea name='nome' class='form-control'><?php echo htmlspecialchars($nome, ENT_QUOTES);  ?></textarea></td>
                 </tr>
                 <tr>
-                    <td>cognome</td>
-                    <td><textarea name='description' class='form-control'><?php echo htmlspecialchars($description, ENT_QUOTES);  ?></textarea></td>
+                    <td>COGNOME</td>
+                    <td><textarea name='cognome' class='form-control'><?php echo htmlspecialchars($cognome, ENT_QUOTES);  ?></textarea></td>
                 </tr>
                 
                 <tr>
                     <td></td>
                     <td>
                         <input type='submit' value='Save Changes' class='btn btn-primary' />
-                        //<a href='read.php' class='btn btn-danger'>Back to read products</a>
+                        //<a href='index.php' class='btn btn-danger'>Back to lista studente</a>
                     </td>
                 </tr>
             </table>
