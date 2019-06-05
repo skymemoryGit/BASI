@@ -81,8 +81,8 @@ if($num>0){
         echo "<tr>";
             echo "<th>STUDENTE</th>";
             echo "<th>AULA</th>";
-            echo "<th>DATA</th>";
             echo "<th>ORA</th>";
+            echo "<th>DATA</th>";
     
         echo "</tr>";
          

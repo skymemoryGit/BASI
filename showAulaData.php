@@ -39,12 +39,19 @@
     <div class="container">
   
         <div class="page-header">
-            <h1>LISTA aule_prenotate</h1>
+            <h1>Lista aule_prenotate per <?PHP  $aula = $_GET['aula']; echo $aula; ?></h1>
         </div>
      
 <?php
 // include database connection
 include 'libs/db_connect.php';
+$aula = $_GET['aula'];
+$data = $_GET['data'];
+
+
+
+
+
 
 // PAGINATION VARIABLES
 // page is the current page, if there's nothing set, default is page 1
@@ -57,7 +64,7 @@ $records_per_page = 5;
 $from_record_num = ($records_per_page * $page) - $records_per_page;
  
 // select data for current page
-$query = "SELECT aula, data, ora,ora_uscita from aula_prenotata";
+$query = "SELECT aula, data, ora,ora_uscita from aula_prenotata where aula=$aula and data=$data";
     //LIMIT :from_record_num, :records_per_page";
  
 $stmt = $db->prepare($query);
@@ -69,13 +76,10 @@ $stmt->execute();
 $num = $stmt->rowCount();
  
 // link to create record form
-echo "<a href='index.php' class='btn btn-primary m-b-1em'>Torna a home</a>";
-echo"  ";
+echo "<a href='index.php' class='btn btn-primary m-b-1em'>Torna Home</a>" ;
+echo'  ';
 echo "<a href='lista_prenotazione_studente.php' class='btn btn-primary m-b-1em'>AGGIUNGI Prenotazione Studente</a>";
-echo "    "; 
-echo "<a href='FormRicercaAula.php' class='btn btn-primary m-b-1em'>Visualizzare per Singole Aule</a>";
-echo "    "; 
-echo "<a href='FormRicercaAulaData.php' class='btn btn-primary m-b-1em'>Ricerca per AULA e DATA</a>";
+echo "<a href='lista_prenotazione_docente.php' class='btn btn-primary m-b-1em'>AGGIUNGI Prenotazione Studente</a>";
  
 //check if more than 0 record found
 if($num>0){
